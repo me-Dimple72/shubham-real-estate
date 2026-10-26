@@ -75,7 +75,7 @@ function Index() {
       {/* Nav */}
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/90 py-3 text-foreground shadow-soft backdrop-blur" : "py-6 text-ink-foreground"}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-          <a href="#" className="font-display text-6xl tracking-wide">Shubham Estate
+          <a href="#" className="font-display text-5xl tracking-wide">Shubham Estate
 
 </a>
           <nav className="hidden gap-10 text-sm md:flex">
