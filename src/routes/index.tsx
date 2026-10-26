@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Bath, BedDouble, MapPin, Maximize, Search, Star, Phone, Mail } from "lucide-react";
+import { ArrowUpRight, Bath, BedDouble, MapPin, Maximize, Search, Star, Phone, Mail, Menu, X } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
@@ -62,6 +62,9 @@ function Index() {
   useReveal();
   const [filter, setFilter] = useState("All");
   const [scrolled, setScrolled] = useState(false);
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const [sent, setSent] = useState(false);
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40);
@@ -73,22 +76,34 @@ function Index() {
   return (
     <div className="overflow-x-hidden">
       {/* Nav */}
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/90 py-3 text-foreground shadow-soft backdrop-blur" : "py-6 text-ink-foreground"}`}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-          <a href="#" className="font-display text-5xl tracking-wide">Shubham Estate
 
-</a>
-          <nav className="hidden gap-10 text-sm md:flex">
-            {["Properties", "Services", "About", "Contact"].map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`} className="group relative">
-                {l}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-brass transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
-          <a href="#contact" className="border border-current px-5 py-2 text-sm transition hover:bg-brass hover:text-accent-foreground hover:border-brass">Book a visit</a>
-        </div>
-      </header>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled || menuOpen ? "bg-background/95 py-3 text-foreground shadow-soft backdrop-blur" : "py-6 text-ink-foreground"}`}>
+  <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
+    <a href="#" className="font-display text-4xl tracking-wide">Shubham Estate</a>
+    <nav className="hidden gap-10 text-sm md:flex">
+      {["About", "Properties", "Services", "Contact"].map((l) => (
+        <a key={l} href={`#${l.toLowerCase()}`} className="group relative">
+          {l}
+          <span className="absolute -bottom-1 left-0 h-px w-0 bg-brass transition-all duration-300 group-hover:w-full" />
+        </a>
+      ))}
+    </nav>
+    <div className="flex items-center gap-3">
+      <a href="https://wa.me/918053591515" target="_blank" rel="noopener noreferrer" className="hidden border border-current px-5 py-2 text-sm transition hover:border-brass hover:bg-brass hover:text-accent-foreground sm:inline-block">Book a visit</a>
+      <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden" aria-label="Menu">
+        {menuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+      </button>
+    </div>
+  </div>
+  {menuOpen && (
+    <nav className="border-t bg-background px-6 py-4 text-foreground md:hidden">
+      {["Properties", "Services", "About", "Contact"].map((l) => (
+        <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-3 text-lg">{l}</a>
+      ))}
+      <a href="https://wa.me/918053591515" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="mt-2 block bg-primary px-5 py-3 text-center text-sm text-primary-foreground">Book a visit</a>
+    </nav>
+  )}
+</header>
 
       {/* Hero */}
       <section className="relative flex min-h-screen items-end overflow-hidden text-ink-foreground">
