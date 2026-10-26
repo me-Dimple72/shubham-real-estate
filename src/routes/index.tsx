@@ -97,7 +97,7 @@ function Index() {
   </div>
   {menuOpen && (
     <nav className="border-t bg-background px-6 py-4 text-foreground md:hidden">
-      {["Properties", "Services", "About", "Contact"].map((l) => (
+      {["About", "Properties", "Services", "Contact"].map((l) => (
         <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block py-3 text-lg">{l}</a>
       ))}
       <a href="https://wa.me/918053591515" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="mt-2 block bg-primary px-5 py-3 text-center text-sm text-primary-foreground">Book a visit</a>
